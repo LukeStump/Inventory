@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Items
+{% endblock %}
+
+{% block main %}
+<div class="mb-3">
+    <form action="/items" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name"
+                placeholder="Name" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="quantity" name="quantity"
+                placeholder="Quantity" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Add Item</button>
+    </form>
+</div>
+<table>
+    <tr>
+        <th>Name:</th>
+        <th>Quantity:</th>
+    </tr>
+    {% for item in items %}
+    <tr>
+        {% for key in item %}
+        <td>
+            {% if key == "name" %}
+                <form action="/items" method="post">
+                    <button class="btn btn-primary" style="background-color:white; color:black; border:0pt" type="submit" id="value" name="value"
+                        value="{{ item["name"] }}">{{ item[key] }}</button>
+                </form>
+            {% else %}
+                {{ item[key] }}</td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<!-- <button action="/quote" method="get">Back</button> -->
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table>
+        <tr>
+            {% for item in keys %}
+                <th>{{ item }}</th>
+            {% endfor %}
+        </tr>
+        {% for item in data %}
+            <tr>
+            {% for atribute in item %}
+                <td>{{ atribute }}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <!-- <button action="/quote" method="get">Back</button> -->
+
+{% endblock %}

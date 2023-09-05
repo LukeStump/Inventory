@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Item
+{% endblock %}
+
+{% block main %}
+
+<h1>
+    {{ item.name }}
+</h1>
+
+<table>
+    <tr>
+        {% for key in item %}
+        <td> {{ key }} </td>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for key in item %}
+        <td>{{ item[key] }}</td>
+        {% endfor %}
+    </tr>
+</table>
+<br>
+<form action="/item?a=r&id={{ id }}" method="post">
+    <button class="btn btn-primary" type="submit" id="value" name="value" value="{{ item[0] }}">Rename</button>
+    <input type="text" autocomplete="off" name="name" placeholder="{{ item.name }}">
+</form>
+<br>
+<form action="/item?a=d&id={{ id }}" method="post">
+    <input type="checkbox" name="confirm">Confirm</check><br>
+    <button class="btn btn-primary" style="background-color:red" type="submit" id="value" name="value"
+        value="{{ item[0] }}">Delete</button>
+</form>
+<br>
+
+<table align="center">
+    <tr>
+        <td>Tags:</td>
+    </tr>
+    {% for tag in tags %}
+    <tr>
+        <td>
+            <form action="/item?a=s&id={{ id }}" method="post">
+                <button class="btn btn-primary" type="submit" id="value" name="value" value="{{ tag.name }}">{{ tag["name"] }}</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<table align="center">
+    <tr>
+        <td>Add Tags:</td>
+    </tr>
+    {% for tag in not_tags %}
+    <tr>
+        <td>
+            <form action="/item?a=a&id={{ id }}" method="post">
+                <button class="btn btn-primary" type="submit" id="value" name="value" value="{{ tag.name }}">{{ tag["name"] }}</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<!-- <button action="/quote" method="get">Back</button> -->
+
+{% endblock %}

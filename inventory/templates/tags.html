@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Tags
+{% endblock %}
+
+{% block main %}
+<div class="mb-3">
+    <form action="/tags" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name"
+                placeholder="Name" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Add Tag</button>
+    </form>
+</div>
+<table>
+    <tr>
+        <th>Name:</th>
+    </tr>
+    {% for tag in tags %}
+    <tr>
+        {% for key in tag %}
+        <td>
+            <form action="/tags" method="post">
+                <button class="btn btn-primary" style="background-color:white; color:black; border:0pt" type="submit" id="value" name="value"
+                    value="{{ tag[key] }}">{{ tag[key] }}</button>
+            </form>
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<!-- <button action="/quote" method="get">Back</button> -->
+
+{% endblock %}
